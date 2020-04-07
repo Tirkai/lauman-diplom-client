@@ -1,0 +1,26 @@
+.tipItem {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    background: white;
+    padding: 40px;
+    box-sizing: border-box;
+    grid-gap: 30px;
+    margin-bottom: 35px;
+}
+.tipItem:last-child {
+    margin-bottom: 0;
+}
+.number {
+    font-family: "Amatic", sans-serif;
+    font-size: 144px;
+    text-align: center;
+}
+.text {
+    font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+    .tipItem {
+        grid-template-columns: 1fr;
+    }
+}

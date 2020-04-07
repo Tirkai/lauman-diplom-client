@@ -1,0 +1,15 @@
+.mainPageIntro {
+    font-size: 64px;
+    font-weight: bold;
+    padding: 70px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.mainText {
+    font-size: 64px;
+}
+
+.subText {
+    font-size: 32px;
+}

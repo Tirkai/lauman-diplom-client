@@ -1,0 +1,17 @@
+.socials {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65px;
+    background: black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 30px);
+    grid-gap: 15px;
+}
+
+.item {
+    display: block;
+}

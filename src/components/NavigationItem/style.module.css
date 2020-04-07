@@ -1,0 +1,11 @@
+.navigationItem {
+    padding: 0 30px;
+    border-bottom: 2px solid black;
+    cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+    .navigationItem {
+        border: none;
+        padding: 10px 30px;
+    }
+}

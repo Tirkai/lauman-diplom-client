@@ -1,0 +1,9 @@
+.emptyCategory {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding: 30px;
+    height: 350px;
+    margin-bottom: 50px;
+}

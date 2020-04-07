@@ -1,0 +1,19 @@
+.mainPageLayout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    justify-content: space-between;
+    grid-gap: 100px;
+    padding: 50px 0;
+}
+
+@media screen and (max-width: 1200px) {
+    .mainPageLayout {
+        grid-gap: 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mainPageLayout {
+        grid-template-columns: 1fr;
+    }
+}

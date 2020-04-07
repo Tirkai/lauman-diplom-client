@@ -1,0 +1,22 @@
+@font-face {
+    font-family: "Amatic";
+    src: url("./assets/fonts/Amatic.ttf");
+}
+
+body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font: 18px/1.2 Verdana, sans-serif;
+    background: #eaeaea;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

@@ -1,0 +1,11 @@
+.contentTitle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    height: 50px;
+    font-family: "Amatic", sans-serif;
+    color: white;
+    font-size: 30px;
+    margin: 0 30px;
+}

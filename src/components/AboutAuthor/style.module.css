@@ -1,0 +1,14 @@
+.aboutAuthor {
+    display: block;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+    padding: 25px 0;
+}
+
+.desc {
+    display: block;
+    margin-bottom: 25px;
+}

@@ -1,4 +1,7 @@
 import { instagram, twitter, vk } from "assets/icons";
+import { IStore } from "interfaces/common/IStore";
+import { computed } from "mobx";
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import style from "./style.module.css";
 
@@ -8,22 +11,29 @@ interface ISocailItem {
     link: string;
 }
 
-export class Socials extends Component {
+@inject("store")
+@observer
+export class Socials extends Component<IStore> {
+    @computed
+    get getField() {
+        return this.props.store!.staticFields.getFieldByKey;
+    }
+
     socials: ISocailItem[] = [
         {
             icon: vk,
             name: "VK",
-            link: "https://vk.com/lauuuman",
+            link: this.getField("Links", "Vk"),
         },
         {
             icon: twitter,
             name: "Twitter",
-            link: "https://twitter.com",
+            link: this.getField("Links", "Twitter"),
         },
         {
             icon: instagram,
             name: "Instagram",
-            link: "https://instagram.com/lauuuman",
+            link: this.getField("Links", "Instagram"),
         },
     ];
 

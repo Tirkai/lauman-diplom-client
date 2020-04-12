@@ -9,6 +9,7 @@ import { computed, reaction } from "mobx";
 import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import { RouteComponentProps } from "react-router";
+import { getUrlWithCmsPort } from "utils";
 
 interface ICategoryPageRouteParams {
     id: string;
@@ -44,6 +45,11 @@ export class CategoryPage extends Component<ICategoryPageProps> {
     }
 
     render() {
+        const emptyCategory = this.store.staticFields.getFieldByKey(
+            "Category",
+            "Empty",
+        );
+
         return this.store.articles.articles.length ? (
             <CategoryLayout>
                 {this.store.articles.articles.map((article) => (
@@ -51,12 +57,7 @@ export class CategoryPage extends Component<ICategoryPageProps> {
                         <TipsPreview
                             title={article.name}
                             text={article.description}
-                            image={
-                                "http://" +
-                                window.location.hostname +
-                                ":1337" +
-                                article.image.url
-                            }
+                            image={getUrlWithCmsPort(article.image.url)}
                         />
                         <TipsList>
                             {article.tips.map((item) => (
@@ -68,8 +69,10 @@ export class CategoryPage extends Component<ICategoryPageProps> {
                     </ArticleLayout>
                 ))}
             </CategoryLayout>
-        ) : (
+        ) : this.store.articles.isFetching ? (
             <EmptyCategory />
+        ) : (
+            <EmptyCategory>{emptyCategory}</EmptyCategory>
         );
     }
 }

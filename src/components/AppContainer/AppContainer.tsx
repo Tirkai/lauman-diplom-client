@@ -2,11 +2,12 @@ import Footer from "components/Footer/Footer";
 import { Header } from "components/Header/Header";
 import { Logo } from "components/Logo/Logo";
 import { Navigation } from "components/Navigation/Navigation";
+import PageContent from "components/PageContent/PageContent";
 import { PageWrapper } from "components/PageWrapper/PageWrapper";
 import { Socials } from "components/Socials/Socials";
 import { IStore } from "interfaces/common/IStore";
-import { computed } from "mobx";
-import { inject, observer } from "mobx-react";
+import { computed, reaction } from "mobx";
+import { disposeOnUnmount, inject, observer } from "mobx-react";
 import React, { Component } from "react";
 import { Router, Switch } from "react-router";
 import { routes } from "routes";
@@ -22,27 +23,59 @@ export class AppContainer extends Component<IStore> {
     }
 
     componentDidMount() {
+        this.store.staticFields.fetchStaticFields();
         this.store.articles.fetchCategories();
+
+        disposeOnUnmount(
+            this,
+            reaction(
+                () => this.store.staticFields.fields,
+                () =>
+                    (document.title = this.store.staticFields.getFieldByKey(
+                        "Title",
+                        "PageTitle",
+                    )),
+            ),
+        );
     }
 
     render() {
-        return (
-            <Router history={browserHistory}>
-                <Socials />
-                <PageWrapper>
-                    <Header>
-                        <Logo />
-                    </Header>
-                    <Navigation categories={this.store.articles.categories} />
-                    <Switch>{mapRoutes(routes)}</Switch>
-                </PageWrapper>
+        if (this.store.staticFields.isReady) {
+            const { getFieldByKey } = this.store.staticFields;
 
-                <Footer
-                    copyright="copyright"
-                    contacts={["laumandana@gmail.com"]}
-                    email={"laumandana@gmail.com"}
-                />
-            </Router>
-        );
+            const titlePrimaryText = getFieldByKey("Title", "PrimaryText");
+            const titleSecondaryText = getFieldByKey("Title", "SecondaryText");
+
+            const copyright = getFieldByKey("Footer", "Copyright");
+            const email = getFieldByKey("Links", "Email");
+
+            return (
+                <Router history={browserHistory}>
+                    <Socials />
+                    <PageContent>
+                        <PageWrapper>
+                            <Header>
+                                <Logo
+                                    mainText={titlePrimaryText}
+                                    subText={titleSecondaryText}
+                                />
+                            </Header>
+                            <Navigation
+                                categories={this.store.articles.categories}
+                            />
+                            <Switch>{mapRoutes(routes)}</Switch>
+                        </PageWrapper>
+                    </PageContent>
+
+                    <Footer
+                        copyright={copyright}
+                        contacts={[email]}
+                        email={email}
+                    />
+                </Router>
+            );
+        } else {
+            return "";
+        }
     }
 }

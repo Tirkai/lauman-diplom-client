@@ -24,7 +24,9 @@ export class Footer extends Component<IFooterProps> {
                             ))}
                         </div>
                         <div className={style.email}>
-                            <img src={email} />
+                            <a href={`mailto:${this.props.email}`}>
+                                <img src={email} />
+                            </a>
                         </div>
                     </div>
                 </PageWrapper>

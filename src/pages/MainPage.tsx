@@ -5,37 +5,46 @@ import MainPageIntro from "components/MainPageIntro/MainPageIntro";
 import { MainPageLayout } from "components/MainPageLayout/MainPageLayout";
 import { MainPageText } from "components/MainPageText/MainPageText";
 import Surface from "components/Surface/Surface";
+import { IStore } from "interfaces/common/IStore";
+import { computed } from "mobx";
+import { inject, observer } from "mobx-react";
 import React, { Component } from "react";
 
-export class MainPage extends Component {
+@inject("store")
+@observer
+export class MainPage extends Component<IStore> {
+    @computed
+    get store() {
+        return this.props.store!;
+    }
+
     render() {
+        const { getFieldByKey } = this.store.staticFields;
+
+        const primaryText = getFieldByKey("MainPage", "PrimaryText");
+        const secondaryText = getFieldByKey("MainPage", "SecondaryText");
+        const content = getFieldByKey("MainPage", "Content");
+        const authorImage = getFieldByKey("Author", "Image");
+        const authorAbout = getFieldByKey("Author", "About");
+
         return (
             <MainPageLayout>
                 <Surface>
                     <ContentTitle>Об идее</ContentTitle>
                     <ContentWrapper>
-                        <MainPageIntro mainText="Test test" subText="123" />
-                        <MainPageText>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit ut aliquam, purus sit amet luctus venenatis,
-                            lectus magna fringilla urna, porttitor rhoncus dolor
-                            purus non enim praesent elementum facilisis leo, vel
-                            fringilla est ullamcorper eget nulla facilisi etiam
-                            dignissim diam quis enim lobortis scelerisque
-                            fermentum dui faucibus in ornare quam viverra
-                            venenatis, lectus magna fringilla urna, porttitor
-                            rhoncus dolor purus non enim praesent elementum
-                            facilisis leo, vel fringilla est ullamcorper eget
-                            nulla facilisi etiam dignissim diam quis enim
-                            lobortis scelerisque fermentum dui faucibus in
-                            ornare quam viverra
-                        </MainPageText>
+                        <MainPageIntro
+                            mainText={primaryText}
+                            subText={secondaryText}
+                        />
+                        <MainPageText>{content}</MainPageText>
                     </ContentWrapper>
                 </Surface>
                 <Surface>
                     <ContentTitle>Создатель</ContentTitle>
                     <ContentWrapper>
-                        <AboutAuthor>Desc</AboutAuthor>
+                        <AboutAuthor image={authorImage}>
+                            {authorAbout}
+                        </AboutAuthor>
                     </ContentWrapper>
                 </Surface>
             </MainPageLayout>

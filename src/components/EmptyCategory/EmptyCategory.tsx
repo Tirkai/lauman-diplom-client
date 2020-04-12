@@ -6,9 +6,7 @@ export class EmptyCategory extends Component {
         return (
             <Surface>
                 <div className={style.emptyCategory}>
-                    <div className={style.container}>
-                        В данной категории нет статей
-                    </div>
+                    <div className={style.container}>{this.props.children}</div>
                 </div>
             </Surface>
         );

@@ -13,3 +13,6 @@ export const mapRoutes = (routes: IBrowserRoute[]) =>
             />
         );
     });
+
+export const getUrlWithCmsPort = (url: string) =>
+    `http://${window.location.hostname}:1337${url}`;

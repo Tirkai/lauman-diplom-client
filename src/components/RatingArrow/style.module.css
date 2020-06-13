@@ -1,0 +1,10 @@
+.ratingArrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.rating {
+    padding-top: 5px;
+}

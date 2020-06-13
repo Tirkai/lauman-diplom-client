@@ -43,4 +43,11 @@ export class ArticlesStore {
             this.isFetching = false;
         }
     }
+
+    @action
+    async vote(articleId: number, score: number) {
+        await Axios.get(
+            getUrlWithCmsPort(`/vote?id=${articleId}&score=${score}`),
+        );
+    }
 }

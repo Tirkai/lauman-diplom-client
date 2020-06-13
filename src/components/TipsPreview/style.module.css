@@ -1,5 +1,7 @@
 .tipsPreview {
     padding: 25px 0;
+    position: relative;
+    min-height: 350px;
 }
 .image img {
     width: 100%;
@@ -13,4 +15,11 @@
 
 .text {
     display: block;
+}
+.rating {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    box-sizing: border-box;
+    justify-content: space-between;
 }

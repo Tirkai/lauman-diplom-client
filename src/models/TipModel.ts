@@ -1,11 +1,12 @@
 export class TipModel {
     id: number;
-    number: number;
+    index: number;
     content: string;
+    type: "common" | "important" = "common";
 
-    constructor(id: number, number: number, content: string) {
+    constructor(id: number, index: number, content: string) {
         this.id = id;
-        this.number = number;
+        this.index = index;
         this.content = content;
     }
 }

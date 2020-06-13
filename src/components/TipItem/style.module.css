@@ -19,6 +19,12 @@
     font-size: 18px;
 }
 
+.typeImportant {
+    background: #df2020;
+    color: white;
+    border-radius: 35px;
+}
+
 @media screen and (max-width: 768px) {
     .tipItem {
         grid-template-columns: 1fr;
